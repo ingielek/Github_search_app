@@ -1,0 +1,38 @@
+.App {
+  text-align: center;
+  display: flex;
+}
+.sideBar {
+  height: 100vh;
+  width: 300px;
+  background-color: #f4f6f9;
+}
+.sidebarLogo {
+  width: 300px;
+  height: 100px;
+  background-color: #081326;
+}
+
+.logo {
+  width: 120px;
+  height: 50px;
+}
+
+.logoDescription {
+  position: absolute;
+  left: 50px;
+  top: 35px;
+  color: whitesmoke;
+  font-family: Helvetica;
+  font-size: 22px;
+  letter-spacing: 2px;
+  padding-bottom: 30px;
+}
+
+.selectLanguage {
+  margin-left: 90px;
+}
+
+.repoTable {
+  width: 100%;
+}
