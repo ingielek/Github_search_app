@@ -4,24 +4,24 @@ import axios from 'axios'
 export function requestReposList(searchQuery) {
 	return {
 		type: types.REQUEST_REPOSITORIES,
-		searchQuery
+		payload: {searchQuery}
 	}
 }
 
 export function receiveReposList(data) {
+	debugger;
 	return {
 		type: types.RECEIVE_REPOSITORIES,
-		data: data
+		payload: data.data
 	}
 }
 
 
-export const fetchRepos = searchQuery => (dispatch) => {
+export const fetchRepos = searchQuery => async dispatch => {
+	debugger;
 	dispatch(requestReposList(searchQuery));
-	return axios.get(`https://api.github.com/search/repositories?q=${searchQuery}`)
-		.then((response, dispatch) => {
-		dispatch(receiveReposList(response.data))
-	})
+	return await axios.get(`https://api.github.com/search/repositories?q=${searchQuery}`)
+		.then(response => dispatch(receiveReposList(response)))
 		.catch(error => {
 			throw(error);
 		});

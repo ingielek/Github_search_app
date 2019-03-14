@@ -1,6 +1,6 @@
 const initialState = {
 	status: 'default',
-	searchQuery: '',
+	searchQuery: 'javascript',
 	perPage: null,
 	totalPages: null,
 	page: null,
@@ -46,8 +46,8 @@ export default function repositories (state = initialState, action) {
 			};
 		case types.RECEIVE_REPOSITORIES:
 			return {
-				status: 'succeed',
 				...state,
+				status: 'succeed',
 				data: action.payload
 			};
 		default:

@@ -5,38 +5,32 @@ import { connect} from "react-redux";
 import { fetchRepos } from '../../services/repositories'
 
 const columns = [{
-	Header: 'Autor',
-	accessor: 'author'
+	Header: 'ID',
+	accessor: 'id'
 }, {
 	Header: 'Name',
 	accessor: 'name',
 }, {
-	Header: 'URL',
-	accessor: 'url'
-}, {
-	Header: 'Description',
-	accessor: 'description'
-}, {
-	Header: 'Language',
-	accessor: 'language'
-}, {
-	Header: 'Stars',
-	accessor: 'stars'
+	Header: 'Full Name',
+	accessor: 'full_name'
 }];
 
 class RepositoriesTable extends Component {
 
 	render() {
-
+		debugger;
 		const { repositories } = this.props;
-		const repositoriesData = repositories.data.data;
+		const repositoriesData = repositories.data.items
 
-		return <ReactTable
-			data={repositoriesData}
-			columns={columns}
-			minRows={1}
-			className="repoTable"
-		/>
+		return (
+			 <ReactTable
+					data={repositoriesData}
+					columns={columns}
+					minRows={1}
+					className="repoTable"
+				/>
+
+		)
 	}
 }
 

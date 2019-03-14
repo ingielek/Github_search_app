@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { fetchRepos } from '../../../services/repositories'
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { compose } from 'redux'
+import { connect} from "react-redux";
+
 
 const styles = theme => ({
 	container: {
@@ -28,9 +32,23 @@ const styles = theme => ({
 });
 
 class SidebarSearch extends Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			searchQuery: ''
+		}
+	}
+
+	handleChange = event => {
+		const searchQuery = event.target.value;
+		this.setState({
+			searchQuery
+		});
+	}
 
 	handleClick = () => {
-		console.log('hi')
+		const {searchQuery}= this.state;
+		this.props.fetchRepos(searchQuery);
 	};
 
 
@@ -42,14 +60,16 @@ class SidebarSearch extends Component {
 			<div>
 				<form className={classes.container} noValidate autoComplete="off">
 					<TextField
-						id="outlined-search"
 						label="Search field"
 						type="search"
 						className={classes.textField}
 						margin="normal"
 						variant="outlined"
+						value={this.state.searchQuery}
+						onChange={this.handleChange}
+
 					/>
-					<Button color="primary" className={classes.button}>
+					<Button color="primary" className={classes.button} onClick={this.handleClick}>
 						Search
 					</Button>
 				</form>
@@ -62,4 +82,15 @@ SidebarSearch.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SidebarSearch);
+const mapStateToProps = ({ repositories }) => {
+	return {
+		searchQuery: repositories.searchQuery
+	}
+};
+
+export default compose(
+	withStyles(styles),
+	connect(
+		mapStateToProps,
+		{fetchRepos}
+	))(SidebarSearch);
