@@ -13,18 +13,31 @@ const columns = [{
 }, {
 	Header: 'Full Name',
 	accessor: 'full_name'
+}, {
+	Header: 'Akcje',
+	accessor: 'details',
+	Cell: row => (
+		<div>
+			<button className="detailsBtn">
+				Details
+			</button>
+		</div>
+	)
 }];
 
 class RepositoriesTable extends Component {
 
+
+
 	render() {
-		debugger;
 		const { repositories } = this.props;
-		const repositoriesData = repositories.data.items
+		const repositoriesData = repositories.data.items;
+		const isLoading = repositories.status === 'loading';
 
 		return (
 			 <ReactTable
 					data={repositoriesData}
+					loading={isLoading}
 					columns={columns}
 					minRows={1}
 					className="repoTable"

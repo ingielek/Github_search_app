@@ -23,7 +23,7 @@
   left: 50px;
   top: 35px;
   color: whitesmoke;
-  font-family: Helvetica;
+  font-family: Helvetica, sans-serif;
   font-size: 22px;
   letter-spacing: 2px;
   padding-bottom: 30px;
@@ -35,4 +35,15 @@
 
 .repoTable {
   width: 100%;
+}
+
+.detailsBtn {
+  font-family: Roboto, serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  color: white;
+  background-color: dodgerblue;
 }
